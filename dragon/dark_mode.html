@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style id="stylesheet">
+        body {
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .d_body {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        
+        .w_body {
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        h1 {
+            color: #007BFF;
+        }
+
+        label {
+            display: inline-block;
+            margin-top: 20px;
+            cursor: pointer;
+            padding: 8px;
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        .mode-switch {
+            background-color: rgb(255, 255, 255);
+            padding: 10px;
+            color: #333;
+            font-size: larger;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .mode-switch2 {
+            background-color: rgb(255, 255, 255);
+            color: #333;
+            font-size: larger;
+            border: none;
+            border-radius: 43px;
+            width: 90px;
+        }
+
+        .ball {
+            background-color: rgb(0, 0, 0);
+            width: 37%;
+            height: 32px;
+            border: none;
+            border-radius: 203px;
+            position: relative;
+        }
+
+        .dark_mode_on {
+            background-color: rgb(0, 0, 0);
+            position: relative;
+            left: 51px;
+            width: 37%;
+            height: 32px;
+            border: none;
+            border-radius: 203px;
+        }
+
+        .white_mode_on {
+            background-color: rgb(255, 250, 250);
+            position: relative;
+            left: 3px;
+            width: 37%;
+            height: 32px;
+            border: none;
+            border-radius: 203px;
+        }
+    </style>
+    <title>Light and Dark Mode</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Light and Dark Mode</h1>
+        <button class="mode-switch">Dark Mode</button>
+        <label class="mode-switch2 ">
+            <div class="ball "></div>
+        </label>
+    </div>
+
+    <script>
+        let dark_mode = true;
+        let btn = document.querySelector(".mode-switch");
+        let body = document.body;
+
+        btn.addEventListener("click", () => {
+            dark_mode = !dark_mode;
+            updateStyles();
+        });
+
+        let right=true;
+        let ball=document.querySelector(".ball");
+
+        ball.addEventListener("click",()=>{
+            dark_mode = !dark_mode;
+            updateStyles();
+        });
+
+        function updateStyles() {
+            body.classList.toggle("d_body", dark_mode);
+            body.classList.toggle("w_body", !dark_mode);
+
+            btn.style.backgroundColor = dark_mode ? "black" : "white";
+            btn.style.color = dark_mode ? "white" : "black";
+            btn.innerText = dark_mode ? "Light Mode" : "Dark Mode";
+
+            if (dark_mode) {
+                ball.parentElement.style.backgroundColor="white";
+                ball.setAttribute("class", "dark_mode_on");
+            } else {
+                ball.parentElement.style.backgroundColor="black";
+                ball.setAttribute("class", "white_mode_on");
+            }
+        }
+    </script>
+</body>
+
+</html>
