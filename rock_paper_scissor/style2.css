@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.nav{
+
+    background-color: black;
+    color: aqua;
+    font-size: larger;
+    height: 50px;
+    text-align: center;
+
+}
+
+p{
+    padding-top: 0.9rem;
+}
+
+img{
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.images{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+    margin-top: 10px;
+    
+}
+
+.choice:hover {
+    cursor: pointer;
+    /* background-color: #081b31; */
+    border-radius: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

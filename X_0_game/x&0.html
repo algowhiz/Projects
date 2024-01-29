@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Tic-tac-toe Game</h1>
+    <h1 class="msg"></h1>
+    <div class="container">
+        <div class="game">
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+        </div>
+    </div>
+    <button id="reset">Reset</button>
+    <script>
+        let boxes = document.querySelectorAll(".box");
+        let reset =document.querySelector("#reset");
+        let msg = document.querySelector(".msg");
+
+        let turn0=false;
+
+        let winning_pattern = [
+            [0,1,2],
+            [0,3,6],
+            [0,4,8],
+            [1,4,7],
+            [2,5,8],
+            [2,4,6],
+            [3,4,5],
+            [6,7,8],
+            [],
+        ];
+
+        boxes.forEach((box)=>{
+            box.addEventListener("click",()=>{
+                console.log("box clicked");
+                if(turn0){
+                    box.innerText="O";
+                    turn0=false;
+                }else{
+                    box.innerText="X";
+                    turn0=true;
+                }
+                box.disabled=true;
+                box.style.backgroundColor="#ffffc7";
+                Check_winner();
+            });
+           
+        });
+
+        const reset_box = () =>{
+            turn0=false;
+            enable_box();
+            
+        }
+
+        const disable_box = () =>{
+            for(let box of boxes){
+                box.disabled=true;
+                box.style.backgroundColor="white";
+            }
+        }
+
+        const enable_box = () =>{
+            for(let box of boxes){
+                box.disabled=false;
+                box.innerText="";
+                msg.innerHTML="";
+                box.style.backgroundColor="white";
+            }
+        }
+
+        const winner = (winner_name) =>{
+            msg.innerHTML=`Congratulations , our winner is  player ${winner_name}`;
+            disable_box();
+             
+        }
+
+            const Check_winner = () =>{
+                for(let pat of winning_pattern){
+                    let pos1 = boxes[pat[0]].innerText;
+                    let pos2 = boxes[pat[1]].innerText;
+                    let pos3 = boxes[pat[2]].innerText;
+
+                    if( pos1 != "" && pos2 !="" && pos3 !="" ){
+                        if( pos1 == pos2 && pos2 == pos3 ){
+                            console.log("Winner",pos1);
+                            winner(pos1);
+                        }
+                    }
+                }
+            }
+
+            reset.addEventListener("click" , reset_box);
+
+    </script>
+</body>
+</html>
+
